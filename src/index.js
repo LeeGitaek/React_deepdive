@@ -7,13 +7,15 @@ import AppXY from './AppXY';
 import AppMentor from './AppMentor';
 import AppForm from './AppForm';
 import AppCard from './AppCard';
+import AppTheme from './AppTheme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppForm />
+    {/* <AppForm />
     <AppMentor />
-    <AppCard /> 
+    <AppCard />  */}
+    <AppTheme />
   </React.StrictMode>
 );
 
