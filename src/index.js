@@ -8,14 +8,16 @@ import AppMentor from './AppMentor';
 import AppForm from './AppForm';
 import AppCard from './AppCard';
 import AppTheme from './AppTheme';
+import AppMentorsButton from './AppMontorsButton';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <AppForm />
+    <AppForm />
     <AppMentor />
-    <AppCard />  */}
-    <AppTheme />
+    <AppMentorsButton />
+    <AppCard /> 
+    {/* <AppTheme /> */}
   </React.StrictMode>
 );
 
