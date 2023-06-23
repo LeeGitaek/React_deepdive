@@ -1,28 +1,41 @@
 import React, { useReducer } from "react";
+import {useImmer} from 'use-immer';
 import personReducer from "./reducer/person-reducer";
 
 export default function AppMentor() {
-    const [person, dispatch] = useReducer(personReducer, initialPerson);
+    // const [person, dispatch] = useReducer(personReducer, initialPerson);
+    const [person, updatedPerson] = useImmer(initialPerson);
 
     const handleUpdate = () => {
         const prev = prompt(`Whose name do you want to change`);
         const current = prompt(`what do you want to change mentor name to`);
-        dispatch({type: 'updated', prev, current});
+        // dispatch({type: 'updated', prev, current});
+        updatedPerson((person) => {
+            const mentor = person.mentors.find(m=>m.name === prev);
+            mentor.name = current;
+        });
     };
 
     const handleAdd = () => {
         console.log('🔥 Add!');
-        const newMentorName = prompt(`add a new mentor name`);
-        const newMentorTitle = prompt(`add a new mentor title`);
-        dispatch({type: 'added', newMentorName, newMentorTitle});
-        console.log(`🔥 Added! ${newMentorName}`);
-    };
+        const name = prompt(`add a new mentor name`);
+        const title = prompt(`add a new mentor title`);
+        console.log(`🔥 Added! ${name} ${title}`);
+        // dispatch({type: 'added', newMentorName, newMentorTitle});
+        updatedPerson((person) => {
+            person.mentors.push({ name, title });
+        });
+    }; 
 
     const handleDelete = () => {
         console.log('⭐️ Remove!');
         const removedMentor = prompt(`whose do you want to remove?`);
         console.log(`⭐️ Removed ${removedMentor}`);
-        dispatch({type: 'deleted', removedMentor});
+        // dispatch({type: 'deleted', removedMentor});
+        updatedPerson((person) => {
+            const index = person.mentors.findIndex(m=>m.name === removedMentor);
+            person.mentors.splice(index, 1);
+        });
     };
 
     return (
